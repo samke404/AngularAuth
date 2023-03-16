@@ -8,39 +8,44 @@
                 <h3 class="pt-3 font-weight-bold"> Sign Up </h3>
             </div>
             <div class="panel-body p-3">
-              <form>
+              <form [formGroup]="signupForm">
                 <div class="form-group" pt-3>
-                    <div class="input-field">
+                    <div class="input-field" [class.error]="signupForm.controls['name'].dirty && signupForm.hasError('required', 'name')">
                       <span class="fa fa-user p-2"></span>
-                      <input type="text" placeholder="Name">
+                      <input formControlName="name" type="text" placeholder="Name">
                     </div>
                   </div>
+                  <small *ngIf="signupForm.controls['name'].dirty && signupForm.hasError('required', 'name')" class="text-danger">*Name is required</small>
                 <div class="form-group" pt-3>
-                    <div class="input-field">
+                    <div class="input-field" [class.error]="signupForm.controls['surname'].dirty && signupForm.hasError('required', 'surname')">
                       <span class="fa fa-user p-2"></span>
-                      <input type="text" placeholder="Surname">
+                      <input formControlName="surname" type="text" placeholder="Surname">
                     </div>
                   </div>
+                  <small *ngIf="signupForm.controls['surname'].dirty && signupForm.hasError('required', 'surname')" class="text-danger">*Surname is required</small>
                 <div class="form-group" pt-3>
-                    <div class="input-field">
+                    <div class="input-field" [class.error]="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')">
                       <span class="fa fa-user p-2"></span>
-                      <input type="text" placeholder="Email Address">
+                      <input formControlName="email" type="text" placeholder="Email Address">
                     </div>
                   </div>
+                  <small *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')" class="text-danger">*Email address is required</small>
                   <div class="form-group" pt-3>
-                    <div class="input-field">
+                    <div class="input-field" [class.error]="signupForm.controls['username'].dirty && signupForm.hasError('required', 'username')">
                       <span class="fa fa-user p-2"></span>
-                      <input type="text" placeholder="Username">
+                      <input formControlName="username" type="text" placeholder="Username">
                     </div>
                   </div>
+                  <small *ngIf="signupForm.controls['username'].dirty && signupForm.hasError('required', 'username')" class="text-danger">*Username is required</small>
                   <div class="form-group" pt-3>
-                    <div class="input-field">
+                    <div class="input-field" [class.error]="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')">
                       <span class="fa fa-lock p-2"></span>
-                      <input [type]="type" placeholder="Password">
+                      <input formControlName="password" [type]="type" placeholder="Password">
                       <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary btn-block mt-4 w-100"> Sign Up</button>
+                  <small *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')" class="text-danger">*Password is required</small>
+                  <button (click)="onSubmit()" type="submit" class="btn btn-primary btn-block mt-4 w-100"> Sign Up</button>
                   <div class="text-center pt-4 text-muted">Already have an account ? <a id="forgot" routerLink="/login"> Login</a>
                   </div>
               </form>
